@@ -28,9 +28,6 @@ public class Card {
     @Expose
     private String description;
 
-    public Card() {
-
-    }
 
     public Card(int id){
         this.person_id = id;

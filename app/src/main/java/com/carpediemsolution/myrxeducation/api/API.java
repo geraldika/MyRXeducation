@@ -1,4 +1,6 @@
-package com.carpediemsolution.myrxeducation;
+package com.carpediemsolution.myrxeducation.api;
+
+import com.carpediemsolution.myrxeducation.Card;
 
 import java.util.List;
 import retrofit2.http.GET;

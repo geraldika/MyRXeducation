@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,27 +18,25 @@ import java.util.List;
 
 public class PaginationRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-        private static final int MAIN_VIEW = 0;
-        Context context;
+    private static final int MAIN_VIEW = 0;
+    private Context context;
 
     public PaginationRecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
-        private List<Card> cardList = new ArrayList<>();
-        // after reorientation test this member
-        // or one extra request will be sent after each reorientation
-        private boolean allItemsLoaded;
+    private List<Card> cardList;
 
+    private boolean allItemsLoaded;
 
-    class MainViewHolder extends RecyclerView.ViewHolder {
-            TextView textView;
+    private class MainViewHolder extends RecyclerView.ViewHolder {
+        TextView textView;
 
-            public MainViewHolder(View itemView) {
-                super(itemView);
-                textView = (TextView) itemView.findViewById(R.id.text);
-            }
+        private MainViewHolder(View itemView) {
+            super(itemView);
+            textView = (TextView) itemView.findViewById(R.id.text);
         }
+    }
 
     public void addNewItems(List<Card> items) {
         if (items.size() == 0) {
@@ -53,7 +50,7 @@ public class PaginationRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
         return allItemsLoaded;
     }
 
-    public Card getItem(int position) {
+    private Card getItem(int position) {
         return cardList.get(position);
     }
 
@@ -92,10 +89,10 @@ public class PaginationRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
         mainHolder.textView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-             //   final int position = getAdapterPosition();
-                showCardDescription(position,context);
+                //   final int position = getAdapterPosition();
+                showCardDescription(position, context);
                 Log.d("LOG_TAG", "long click position " +
-                        " "+ cardList.get(position).getWord());
+                        " " + cardList.get(position).getWord());
                 return false;
             }
         });
@@ -110,13 +107,13 @@ public class PaginationRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
         Log.d("LOG_TAG", "holder position " + position);
     }
 
-    public void showCardDescription(int position, Context context) {
-       Card card = cardList.get(position);
+    private void showCardDescription(int position, Context context) {
+        Card card = cardList.get(position);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
         builder.setTitle(card.getWord() + " ~ " + card.getTheme())
-                .setMessage(card.getTranslate()+ "\n\n" +card.getDescription())
+                .setMessage(card.getTranslate() + "\n\n" + card.getDescription())
                 .setPositiveButton("no operation", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

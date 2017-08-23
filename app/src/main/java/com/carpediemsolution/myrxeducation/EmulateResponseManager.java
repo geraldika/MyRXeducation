@@ -2,9 +2,6 @@ package com.carpediemsolution.myrxeducation;
 
 import android.util.Log;
 import java.util.List;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 import rx.Observable;
 import rx.Observer;
 import rx.android.schedulers.AndroidSchedulers;
@@ -32,16 +29,11 @@ class EmulateResponseManager {
         return client;
     }
 
-    public Observable<List<Card>> getserverResponse() {
-//
-            API webApi = getRetfofitClient().create(API.class);
-
-            Observable<List<Card>> observable = webApi.getCards();
+    public Observable<List<Card>> getObserverResponse() {
+            Observable<List<Card>> observable = App.getWebApi().getCards();
 
             observable
-                    //
                     .subscribeOn(Schedulers.io())
-                    //
                     .observeOn(AndroidSchedulers.mainThread())
                     //подписываем Observer, к. обрабатывает пакет карточек с сервера
                     .subscribe(new Observer<List<Card>>() {
@@ -63,16 +55,4 @@ class EmulateResponseManager {
         //возвращаем
             return observable;
         }
-
-
-    public Retrofit getRetfofitClient() {
-        Retrofit client = new Retrofit.Builder()
-                .baseUrl("http://cards.carpediemsolutions.ru/")
-                 //.baseUrl("http://192.168.1.52:8081/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .build();
-        return client;
-    }
-
 }

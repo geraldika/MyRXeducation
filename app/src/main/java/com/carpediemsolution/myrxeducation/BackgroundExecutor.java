@@ -5,8 +5,6 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import rx.Observable;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by Юлия on 19.06.2017.
@@ -29,7 +27,7 @@ class BackgroundExecutor  {
             return THREAD_POOL_EXECUTOR;
         }
 
-        public static <T> Observable<T> createSafeBackgroundObservable(Observable.OnSubscribe<T> f) {
+      /*  public static <T> Observable<T> createSafeBackgroundObservable(Observable.OnSubscribe<T> f) {
             return Observable.create(f).subscribeOn(Schedulers.from(THREAD_POOL_EXECUTOR));
-        }
+        }*/
 }

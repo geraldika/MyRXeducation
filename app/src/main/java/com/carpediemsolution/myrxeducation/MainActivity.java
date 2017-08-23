@@ -11,8 +11,7 @@ import rx.android.schedulers.AndroidSchedulers;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
-
+  //  private static final String TAG = "MainActivity";
     private PaginationRecyclerViewAdapter recyclerViewAdapter;
     private RecyclerView recyclerView;
     private Subscription pagingSubscription;
@@ -28,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.RecyclerView);
 
         GridLayoutManager recyclerViewLayoutManager = new GridLayoutManager(MainActivity.this, 3);
-        //
         recyclerViewLayoutManager.supportsPredictiveItemAnimations();
         // инициализируем adapter в первый раз
             recyclerViewAdapter = new PaginationRecyclerViewAdapter(MainActivity.this);
@@ -45,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         PaginationTool<List<Card>> paginationTool = PaginationTool.buildPagingObservable(recyclerView,
-                offset -> EmulateResponseManager.getInstance().getserverResponse())
+                offset -> EmulateResponseManager.getInstance().getObserverResponse())
                // .setLimit(LIMIT)
                 .build();
 
@@ -69,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-
+    //отписываемся при закрытии активити,чтобы не было утечек памяти
     @Override
     public void onDestroy() {
         if (pagingSubscription != null && !pagingSubscription.isUnsubscribed()) {
