@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<Card>>() {
                     @Override
+
                     public void onCompleted() {
                     }
 
