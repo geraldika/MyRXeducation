@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
+    
     //отписываемся при закрытии активити,чтобы не было утечек памяти
     @Override
     public void onDestroy() {
