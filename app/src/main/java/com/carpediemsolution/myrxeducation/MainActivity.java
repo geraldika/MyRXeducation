@@ -60,6 +60,8 @@ public class MainActivity extends AppCompatActivity {
                     public void onError(Throwable e) {
                     }
 
+
+
                     @Override
                     public void onNext(List<Card> items) {
                         recyclerViewAdapter.addNewItems(items);
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
     }
-    
+
     //отписываемся при закрытии активити,чтобы не было утечек памяти
     @Override
     public void onDestroy() {
