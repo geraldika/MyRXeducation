@@ -61,11 +61,8 @@ public class PaginationRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if (viewType == MAIN_VIEW) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item, parent, false);
-            return new MainViewHolder(v);
-        }
-        return null;
+        return  viewType == MAIN_VIEW ? new MainViewHolder(LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.item_recyclerview, parent, false)) : null;
     }
 
     @Override
@@ -86,22 +83,16 @@ public class PaginationRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
         MainViewHolder mainHolder = (MainViewHolder) holder;
         mainHolder.textView.setText(getItem(position).getWord());
 
-        mainHolder.textView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
+        mainHolder.textView.setOnLongClickListener((View v)-> {
                 //   final int position = getAdapterPosition();
                 showCardDescription(position, context);
                 Log.d("LOG_TAG", "long click position " +
                         " " + cardList.get(position).getWord());
                 return false;
-            }
         });
 
-        mainHolder.textView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        mainHolder.textView.setOnClickListener((View v)->{
                 mainHolder.textView.setText(getItem(position).getTranslate());
-            }
         });
 
         Log.d("LOG_TAG", "holder position " + position);
@@ -112,12 +103,9 @@ public class PaginationRecyclerViewAdapter extends RecyclerView.Adapter<Recycler
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
 
-        builder.setTitle(card.getWord() + " ~ " + card.getTheme())
-                .setMessage(card.getTranslate() + "\n\n" + card.getDescription())
-                .setPositiveButton("no operation", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
+        builder.setTitle(card.getWord().concat(" ~ ").concat(card.getTheme()))
+                .setMessage(card.getTranslate().concat("\n\n").concat(card.getDescription()))
+                .setPositiveButton("no operation", (DialogInterface dialog, int which)-> {
                 })
                 .show();
     }

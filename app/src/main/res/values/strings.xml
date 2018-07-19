@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyRXeducation</string>
+    <string name="base_url">http://cards.carpediemsolutions.ru/</string>
 </resources>

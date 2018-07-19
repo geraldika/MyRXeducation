@@ -13,7 +13,7 @@ import rx.schedulers.Schedulers;
 
 class EmulateResponseManager {
 
-    private static final String LOG_TAG = "EmulateResponseManager";
+    private static final String LOG_TAG = EmulateResponseManager.class.getSimpleName();
 
     private static volatile EmulateResponseManager client;
 

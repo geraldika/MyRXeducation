@@ -29,7 +29,7 @@ public class App extends Application {
 
     private Retrofit getRetfofitClient() {
         return new Retrofit.Builder()
-                .baseUrl("http://cards.carpediemsolutions.ru/")
+                .baseUrl(getString(R.string.base_url))
                 //.baseUrl("http://192.168.1.52:8081/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
